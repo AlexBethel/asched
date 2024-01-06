@@ -26,3 +26,11 @@ Goals:
 Currently we're using a custom version of Beanweb's scraper to prepare
 the `classtimes.json` file; I'll probably rewrite it in Typescript
 soon.
+
+## Running
+
+This is a SvelteKit project. After cloning use:
+```bash
+npm i
+npm run dev -- --open
+```
