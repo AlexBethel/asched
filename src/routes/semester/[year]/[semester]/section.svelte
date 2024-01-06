@@ -24,7 +24,14 @@
 		}
 	}
 
-	import translation from './translation.json';
+	import translationFile from './translation.json';
+	const translation: {
+		classes: {
+			substitutions: { [k: string]: string };
+			blacklist: string[];
+		};
+		instructors: { [name: string]: string };
+	} = translationFile;
 	const instructor = translation.instructors[classtime.instructor] || classtime.instructor;
 </script>
 

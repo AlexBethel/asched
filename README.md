@@ -30,6 +30,7 @@ soon.
 ## Running
 
 This is a SvelteKit project. After cloning use:
+
 ```bash
 npm i
 npm run dev -- --open
