@@ -20,6 +20,7 @@
         </ul>
         <ul>
             <li><a href="/">Home</a></li>
+            <li><a href="/my-schedule">My classes</a></li>
             <li>
                 <details role="list" dir="rtl">
                     <summary role="link" aria-haspopup="listbox"> Theme </summary>

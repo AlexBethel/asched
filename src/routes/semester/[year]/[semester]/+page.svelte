@@ -39,11 +39,11 @@
 
 <main class="container">
     <h2>Fall 2024</h2>
+    <input type="search" placeholder="Filter classes..." bind:value={search_term} />
     {#await load_classes()}
         <h3>Loading classes...</h3>
         <progress></progress>
     {:then by_subject}
-        <input type="search" placeholder="Filter classes..." bind:value={search_term} />
         {#each filter_classes(search_term, by_subject) as subject}
             <Subject subject={subject.label} classtimes={subject.items}></Subject>
         {/each}
