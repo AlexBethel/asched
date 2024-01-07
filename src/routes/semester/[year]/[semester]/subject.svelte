@@ -13,14 +13,16 @@
 	const by_number = categorize(classtimes, (c) => c.course_number);
 </script>
 
-<details>
-	<summary>
-		{subject_names[subject]}
-		({subject})
-	</summary>
-	<article>
-		{#each by_number as course}
-			<Course course={subject + ' ' + course.label} classtimes={course.items}></Course>
-		{/each}
-	</article>
-</details>
+{#if classtimes.length != 0}
+	<details>
+		<summary>
+			{subject_names[subject]}
+			({subject})
+		</summary>
+		<article>
+			{#each by_number as course}
+				<Course course={subject + ' ' + course.label} classtimes={course.items}></Course>
+			{/each}
+		</article>
+	</details>
+{/if}

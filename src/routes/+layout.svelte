@@ -10,7 +10,13 @@
 <header class="container-fluid">
 	<nav>
 		<ul>
-			<li><strong>Alex's Scheduler</strong></li>
+			<li>
+				<strong>
+					<!-- Presumably someday we'll get a logo; for now I'm
+                                             lazy and just using an emoji :P -->
+					🫖 Teaweb
+				</strong>
+			</li>
 		</ul>
 		<ul>
 			<li><a href="/">Home</a></li>

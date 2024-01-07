@@ -26,7 +26,7 @@ function section_meeting_conflict(l: ClassSection, r: Meeting): boolean {
 function sections_meeting_conflict(
 	l: ClassSection[],
 	r: Meeting,
-	except: ClassSection,
+	except: ClassSection
 ): ClassSection[] {
 	return l.filter((ls) => section_meeting_conflict(ls, r)).filter((ls) => ls.crn != except.crn);
 }

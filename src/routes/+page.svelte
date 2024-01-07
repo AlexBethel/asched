@@ -6,17 +6,29 @@
 </script>
 
 <main class="container">
-	<article>
+	<article class="grid">
 		<form on:submit={goto_semester}>
+			<hgroup>
+				<h1>Teaweb v0.0.1</h1>
+				<h2>NMT Scheduler</h2>
+			</hgroup>
+			<label for="year">
+				Select a year
+				<select id="year" required>
+					<option value="" selected disabled>Year</option>
+					<option value="2024">2024</option>
+				</select>
+			</label>
 			<label for="semester">
 				Select a semester
 				<select id="semester" required bind:value={semester_selection}>
 					<option value="" selected disabled>Semester</option>
-					<option value="/semester/2024/fall">Fall 2024</option>
+					<option value="/semester/2024/fall">Fall</option>
 				</select>
 			</label>
-			<button type="submit">Submit</button>
+			<button type="submit">View classes</button>
 		</form>
+		<div class="image"></div>
 	</article>
 </main>
 
@@ -29,5 +41,27 @@
 	main {
 		padding-top: 20vh;
 		min-height: calc(100vh - 6rem);
+	}
+
+	article {
+		padding: 0px;
+		gap: 0px;
+	}
+
+	.image {
+		display: block;
+		background-image: url('/background.jpg');
+		background-position: center;
+		background-size: cover;
+	}
+
+	form {
+		padding: 2rem;
+		display: flex;
+		flex-direction: column;
+		margin: 0px;
+	}
+	hgroup {
+		flex-grow: 1;
 	}
 </style>

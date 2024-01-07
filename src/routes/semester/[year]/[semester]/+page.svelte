@@ -21,6 +21,17 @@
 		const by_subject = categorize(classtimes, (c) => c.subject);
 		return by_subject;
 	}
+
+	let search_term = '';
+	function filter_classes(term: string, classes: ClassSet): ClassSet {
+		if (term === '') return classes;
+
+		console.log(`filtering by ${term}`);
+		return classes.map((c) => ({
+			label: c.label,
+			items: c.items.filter((cx) => cx.title.toLowerCase().includes(term.toLowerCase()))
+		}));
+	}
 </script>
 
 <main class="container">
@@ -29,7 +40,8 @@
 		<h3>Loading classes...</h3>
 		<progress></progress>
 	{:then by_subject}
-		{#each by_subject as subject}
+		<input type="search" placeholder="Filter classes..." bind:value={search_term} />
+		{#each filter_classes(search_term, by_subject) as subject}
 			<Subject subject={subject.label} classtimes={subject.items}></Subject>
 		{/each}
 	{/await}
@@ -38,8 +50,12 @@
 <style>
 	h2 {
 		margin-top: 50px;
-		margin-bottom: 100px;
+		margin-bottom: 20px;
 		text-align: center;
+	}
+
+	input {
+		margin-bottom: 100px;
 	}
 
 	h3 {

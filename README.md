@@ -1,4 +1,4 @@
-# Alex's Scheduler
+# Teaweb
 
 Work-in-progress replacement for Benjamin Bean's Beanweb, a scheduling
 program for NMT students.
@@ -32,6 +32,6 @@ soon.
 This is a SvelteKit project. After cloning use:
 
 ```bash
-npm i
+npm i  # install dependencies, first run only
 npm run dev -- --open
 ```
