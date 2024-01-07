@@ -1,7 +1,6 @@
 <!-- Component to render a single section. -->
 <script lang="ts">
 	import type { ClassSection } from '$lib/data_types.ts';
-	import { categorize } from '$lib/categories';
 	import Meeting from './meeting.svelte';
 
 	export let course: string;

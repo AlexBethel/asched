@@ -12,5 +12,3 @@ export async function load(event) {
 	const year = +event.params.year;
 	return { classtimes, semester, year };
 }
-
-export const ssr = false;
