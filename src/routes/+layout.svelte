@@ -13,7 +13,7 @@
             <li>
                 <strong>
                     <!-- Presumably someday we'll get a logo; for now I'm
-                                             lazy and just using an emoji :P -->
+                         lazy and just using an emoji :P -->
                     🫖 Teaweb
                 </strong>
             </li>
