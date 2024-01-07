@@ -50,12 +50,7 @@
 		<ul>
 			{#each classtime.meetings as meeting}
 				<li>
-					<Meeting
-						day={meeting.day}
-						start_time={meeting.start_time}
-						end_time={meeting.end_time}
-						{meeting}
-					></Meeting>
+					<Meeting {classtime} {meeting}></Meeting>
 				</li>
 			{/each}
 		</ul>

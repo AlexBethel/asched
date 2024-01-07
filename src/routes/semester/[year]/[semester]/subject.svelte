@@ -4,6 +4,9 @@
 	import { categorize } from '$lib/categories';
 	import Course from './course.svelte';
 
+	import subject_names_ from './subjects.json';
+	const subject_names = subject_names_ as { [n: string]: string };
+
 	export let subject: string;
 	export let classtimes: ClassSection[];
 
@@ -11,7 +14,10 @@
 </script>
 
 <details>
-	<summary>{subject}</summary>
+	<summary>
+		{subject_names[subject]}
+		({subject})
+	</summary>
 	<article>
 		{#each by_number as course}
 			<Course course={subject + ' ' + course.label} classtimes={course.items}></Course>

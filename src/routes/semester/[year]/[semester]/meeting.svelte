@@ -1,14 +1,15 @@
 <!-- Component to render a meeting time. -->
 <script lang="ts">
-	import type { Meeting } from '$lib/data_types';
+	import type { ClassSection, Meeting } from '$lib/data_types';
 	import { sections_meeting_conflict } from '$lib/conflicts';
 	import { fade } from 'svelte/transition';
 
+	export let classtime: ClassSection;
 	export let meeting: Meeting;
-	export let day: number;
-	export let start_time: number;
-	export let end_time: number;
 
+	const day = meeting.day;
+	const start_time = meeting.start_time;
+	const end_time = meeting.end_time;
 	const days = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 	const day_name = days[day];
 
@@ -28,7 +29,8 @@
 	}
 
 	import { selected } from './stores';
-	$: hasConflict = sections_meeting_conflict($selected, meeting);
+	$: conflicts = sections_meeting_conflict($selected, meeting, classtime);
+	$: hasConflict = conflicts.length != 0;
 </script>
 
 <span style="min-width: 150px; display: inline-block">
@@ -38,7 +40,15 @@
 	{time_to_string(start_time)}&ndash;{time_to_string(end_time)}
 </span>
 {#if hasConflict}
-	<span class="warning" transition:fade={{ duration: 100 }}> Conflict with PHYS-1320-01L </span>
+	<span class="warning" transition:fade={{ duration: 100 }}>
+		{#if conflicts.length == 1}
+			Conflict with
+			{conflicts[0].subject}
+			{conflicts[0].course_number}-{conflicts[0].section_number}
+		{:else}
+			Conflict with {conflicts.length} classes
+		{/if}
+	</span>
 {/if}
 
 <style>

@@ -12,7 +12,7 @@
 			strFromU8(gunzipSync(new Uint8Array(await (await fetch('/classes.json.gz')).arrayBuffer())))
 		);
 
-                // Loading animation testing
+		// Loading animation testing
 		// await new Promise(resolve => setTimeout(resolve, 1000));
 
 		const classtimes = classtimesD.filter(
