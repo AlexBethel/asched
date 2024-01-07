@@ -8,5 +8,5 @@ const text = strToU8(JSON.stringify(classtimes));
 const small = gzipSync(text, { level: 6, mem: 8 });
 
 export const GET: RequestHandler = ({ url }) => {
-	return new Response(small);
+    return new Response(small);
 };
