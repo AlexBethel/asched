@@ -9,7 +9,8 @@
         "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
         "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
         "lint": "prettier --check . && eslint .",
-        "format": "prettier --write ."
+        "format": "prettier --write .",
+        "scrape": "deno run --allow-all ./src/tools/scrape.ts && prettier -w out.json && mv out.json src/routes/classes.json.gz/classtimes.json"
     },
     "devDependencies": {
         "@sveltejs/adapter-auto": "^3.0.0",
@@ -23,6 +24,7 @@
         "eslint-plugin-svelte": "^2.35.1",
         "prettier": "^3.1.1",
         "prettier-plugin-svelte": "^3.1.2",
+        "scrape-it": "^6.1.0",
         "svelte": "^4.2.7",
         "svelte-check": "^3.6.0",
         "tslib": "^2.4.1",

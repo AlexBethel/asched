@@ -18,7 +18,6 @@ type ClassSection = {
 };
 
 type Meeting = {
-    class_section: number;
     day: number;
     start_time: number;
     end_time: number;
