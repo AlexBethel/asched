@@ -151,6 +151,7 @@
 
  article {
      background-color: var(--code-background-color);
+     border: 1px solid var(--ins-color);
 
      padding: 10px;
      margin-bottom: 0px;
