@@ -188,23 +188,6 @@ async function getClassSections(term: string, subject: string): Promise<ClassSec
 async function main() {
     const res = await termsAndSubjects();
 
-    const termEnt = res.terms[6];
-    const subjEnt = res.subjects[54];
-    console.log(subjEnt);
-
-    // const sectionData = await getClassSections(termEnt.term, subjEnt.value);
-    // const sectionDatas = res.subjects
-    //     .map(subj => getClassSections(termEnt.term, subj.value));
-    // const sectionData = (await Promise.all(sectionDatas)).flat();
-
-    // const sectionDatas = res.terms.map(term =>
-    //     Promise.all(
-    //         res.subjects.map(subj =>
-    //             getClassSections(term.term, subj.value)
-    //         )
-    //     )
-    // );
-
     // Crawl one term at a time, but pull every subject within the
     // term at once.
     const sectionData: ClassSection[] = [];
@@ -214,9 +197,8 @@ async function main() {
         sectionData.push(...(await Promise.all(newSubjects)).flat());
     }
 
-    console.log('writing');
+    console.log('writing out.json');
     await fs.writeFile('out.json', JSON.stringify(sectionData));
-    console.log('written');
 }
 
 await main();
