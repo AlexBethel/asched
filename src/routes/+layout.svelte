@@ -1,10 +1,13 @@
 <script lang="ts">
-    // Global CSS.
-    import './pico.min.css';
+ // Global CSS.
+ import './pico.min.css';
 
-    function set_theme(to: undefined | string) {
-        document.documentElement.setAttribute('data-theme', to || '');
-    }
+ import { theme } from '$lib/storage/theme';
+
+ $: {
+     if (typeof document !== 'undefined')
+         document.documentElement.setAttribute('data-theme', $theme);
+ }
 </script>
 
 <header class="container-fluid">
@@ -27,15 +30,15 @@
                     <ul role="listbox">
                         <li>
                             <!-- svelte-ignore a11y-invalid-attribute -->
-                            <a href="#" on:click={() => set_theme(undefined)}>Auto</a>
+                            <a href="#" on:click={() => theme.set('')}>Auto</a>
                         </li>
                         <li>
                             <!-- svelte-ignore a11y-invalid-attribute -->
-                            <a href="#" on:click={() => set_theme('light')}>Light</a>
+                            <a href="#" on:click={() => theme.set('light')}>Light</a>
                         </li>
                         <li>
                             <!-- svelte-ignore a11y-invalid-attribute -->
-                            <a href="#" on:click={() => set_theme('dark')}>Dark</a>
+                            <a href="#" on:click={() => theme.set('dark')}>Dark</a>
                         </li>
                     </ul>
                 </details>
@@ -46,11 +49,11 @@
 <slot />
 
 <style>
-    header {
-        position: sticky;
-        top: 0;
-        background-color: var(--background-color);
-        border-bottom: 1px solid var(--muted-border-color);
-        z-index: 1; /* needed to avoid issues with arrows */
-    }
+ header {
+     position: sticky;
+     top: 0;
+     background-color: var(--background-color);
+     border-bottom: 1px solid var(--muted-border-color);
+     z-index: 1; /* needed to avoid issues with arrows */
+ }
 </style>
