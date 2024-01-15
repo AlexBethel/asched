@@ -28,8 +28,8 @@
      return `${disp_hour}:${minute_str} ${hour > 11 ? 'p.m.' : 'a.m.'}`;
  }
 
- import { selected } from './stores';
- $: conflicts = sections_meeting_conflict($selected, meeting, classtime);
+ import { selections } from '$lib/storage/selections';
+ $: conflicts = sections_meeting_conflict($selections, meeting, classtime);
  $: hasConflict = conflicts.length != 0;
 </script>
 

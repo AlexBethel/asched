@@ -1,38 +1,34 @@
 <script lang="ts">
  const hour_spacing = 50;
 
- const meetings = [
-     {
-         day: 1,
-         start: 800,
-         end: 850,
-         name: "CSE 113-01",
-     },
-     {
-         day: 3,
-         start: 800,
-         end: 850,
-         name: "CSE 113-01",
-     },
-     {
-         day: 5,
-         start: 800,
-         end: 850,
-         name: "CSE 113-01",
-     },
-     {
-         day: 2,
-         start: 930,
-         end: 1045,
-         name: "PHYS 1320-01",
-     },
-     {
-         day: 4,
-         start: 930,
-         end: 1045,
-         name: "PHYS 1320-01",
-     },
- ];
+ /**
+  * Converts a time into a decimal number of hours; e.g.,
+  * time_to_hours(830) = 8.5, since 8:30 is 8.5 hours past midnight.
+  */
+ function time_to_hours(time: number): number {
+     const hours = Math.floor(time / 100);
+     const minutes = time % 100;
+     return hours + (minutes / 60);
+ }
+
+ /**
+  * Calculates the number of minutes from `start` to `end`; e.g.,
+  * time_diff(915, 845) = 30, because there are 30 minutes between
+  * 8:45 and 9:15.
+  */
+ function time_diff_minutes(end: number, start: number): number {
+     return (time_to_hours(end) - time_to_hours(start)) * 60;
+ }
+
+ import { selections } from '$lib/storage/selections';
+ const meetings = $selections.flatMap(s =>
+     s.meetings.map(meeting => ({
+         day: meeting.day,
+         start: meeting.start_time,
+         length: time_diff_minutes(meeting.end_time, meeting.start_time),
+         name: `${s.subject} ${s.course_number}-${s.section_number}`,
+     }))
+ );
 
  const days = [
      'Sun',
@@ -49,14 +45,14 @@
      meetings: {
          day: number,
          start: number,
-         end: number,
+         length: number,
          name: string,
      }[],
  }[] = [];
  for (const [index, day_name] of days.entries()) {
      days_and_meetings.push({
          name: day_name,
-         meetings: meetings.filter(m => m.day == index),
+         meetings: meetings.filter(m => m.day == index + 1),
      });
  }
 
@@ -74,7 +70,7 @@
                 <h2>{name}</h2>
                 {#each meetings as meeting}
                     <div style="height: 0px">
-                        <article style="--start: {meeting.start}; --length: 50">
+                        <article style="--start: {meeting.start}; --length: {meeting.length}">
                             <strong>
                                 {meeting.name}
                             </strong>

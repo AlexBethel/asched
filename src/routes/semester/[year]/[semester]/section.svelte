@@ -8,19 +8,20 @@
 
  const classtime = classtimes[0];
 
- import { selected } from './stores';
- let checked: boolean;
+ import { selections } from '$lib/storage/selections';
 
- function update_check() {
-     const checking = !checked;
-     if (checking) {
-         selected.update((s) => {
+ let included = $selections.find(s => s.crn == classtime.crn) !== undefined;
+ let checked = included;
+ $: {
+     if (checked && !included) {
+         selections.update((s) => {
              s.push(classtime);
              return s;
          });
-     } else {
-         selected.update((s) => s.filter((el) => el !== classtime));
+     } else if (!checked && included) {
+         selections.update((s) => s.filter((el) => el !== classtime));
      }
+     included = checked;
  }
 
  import translationFile from './translation.json';
@@ -35,7 +36,7 @@
 </script>
 
 <div class="flow">
-    <input type="checkbox" role="switch" bind:checked on:click={update_check} />
+    <input type="checkbox" role="switch" bind:checked />
     <div>
         <strong>
             {course}-{classtime.section_number}
