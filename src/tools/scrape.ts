@@ -151,7 +151,7 @@ async function getClassSections(term: string, subject: string): Promise<ClassSec
             // A few classes have days but not times. Ignore them.
             if (!row.Time) continue;
 
-            const day_number = day_order.search(day);
+            const day_number = day_order.search(day) + 1;
             meetings.push({
                 day: day_number,
                 start_time: parseInt(row.Time.split('-')[0]),
