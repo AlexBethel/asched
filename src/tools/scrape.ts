@@ -7,44 +7,39 @@ import type { ClassSection, Meeting } from '../lib/data_types';
 
 type TermsAndSubjects = {
     terms: {
-        term: string,
-        content: string,
-    }[],
+        term: string;
+        content: string;
+    }[];
     subjects: {
-        value: string,
-        content: string,
-    }[],
+        value: string;
+        content: string;
+    }[];
 };
 async function termsAndSubjects(): Promise<TermsAndSubjects> {
-    return (await scrapeIt(
-        'http://banweb7.nmt.edu/pls/PROD/hwzkcrof.p_uncgslctcrsoff',
-        {
+    return (
+        await scrapeIt('http://banweb7.nmt.edu/pls/PROD/hwzkcrof.p_uncgslctcrsoff', {
             terms: {
                 listItem: 'select[name="p_term"] > option',
                 data: {
                     term: { attr: 'value' },
-                    content: {},
-                },
+                    content: {}
+                }
             },
             subjects: {
                 listItem: 'select[name="p_subj"] > option',
                 data: {
                     value: { attr: 'value' },
-                    content: {},
-                },
-            },
-        }
-    )).data as TermsAndSubjects;
+                    content: {}
+                }
+            }
+        })
+    ).data as TermsAndSubjects;
 }
 
-function alignColumns<T>(
-    headers: string[],
-    data: T[][],
-): { [key: string]: T }[] {
-    return data.map(elem => {
+function alignColumns<T>(headers: string[], data: T[][]): { [key: string]: T }[] {
+    return data.map((elem) => {
         const rv: { [key: string]: T } = {};
-        for (let i = 0; i < headers.length; i++)
-            rv[headers[i]] = elem[i];
+        for (let i = 0; i < headers.length; i++) rv[headers[i]] = elem[i];
         return rv;
     });
 }
@@ -52,16 +47,10 @@ function alignColumns<T>(
 /**
  * Splits at the last index of `by` in the string.
  */
-function split_last(
-    str: string,
-    by: string,
-): [string, string] {
+function split_last(str: string, by: string): [string, string] {
     for (let idx = str.length - by.length; idx >= 0; idx--) {
         if (str.substring(idx, idx + by.length) === by) {
-            return [
-                str.substring(0, idx),
-                str.substring(idx + by.length),
-            ];
+            return [str.substring(0, idx), str.substring(idx + by.length)];
         }
     }
 
@@ -70,23 +59,23 @@ function split_last(
 
 // A row pulled directly from Banweb.
 type RawBanwebEntry = {
-    CRN: string,
-    Course: string,
-    Campus: string,
-    Days: string,
-    Date: string,
-    Time: string,
-    Location: string,
-    Hrs: string,
-    Type: string,
-    Title: string,
-    Instructor: string,
-    Seats: string,
-    Limit: string,
-    Enroll: string,
-    Waitlist: string,
-    "Course Fees": string,
-    "Bookstore Link": string,
+    CRN: string;
+    Course: string;
+    Campus: string;
+    Days: string;
+    Date: string;
+    Time: string;
+    Location: string;
+    Hrs: string;
+    Type: string;
+    Title: string;
+    Instructor: string;
+    Seats: string;
+    Limit: string;
+    Enroll: string;
+    Waitlist: string;
+    'Course Fees': string;
+    'Bookstore Link': string;
 };
 
 /**
@@ -99,20 +88,19 @@ function term_name(term: string): [number, string] {
         // don't ask about the order.
         '10': 'Sum',
         '20': 'Fal',
-        '30': 'Spr',
+        '30': 'Spr'
     }[term.substring(4, 6)] as string;
     return [year, day];
 }
 
-async function getClassSections(
-    term: string,
-    subject: string
-): Promise<ClassSection[]> {
-    const url = `http://banweb7.nmt.edu/pls/PROD/hwzkcrof.P_UncgSrchCrsOff?p_term=${term}&p_subj=${subject.replaceAll(' ', '%20')}`;
+async function getClassSections(term: string, subject: string): Promise<ClassSection[]> {
+    const url = `http://banweb7.nmt.edu/pls/PROD/hwzkcrof.P_UncgSrchCrsOff?p_term=${term}&p_subj=${subject.replaceAll(
+        ' ',
+        '%20'
+    )}`;
     console.log(`requesting ${url}`);
-    const res2 = (await scrapeIt(
-        url,
-        {
+    const res2 = (
+        await scrapeIt(url, {
             columns: {
                 listItem: 'table:nth-of-type(1) > tbody > tr:nth-of-type(2) > th > font',
                 convert: (x: string) => x.replaceAll('*', '')
@@ -120,22 +108,20 @@ async function getClassSections(
             sections: {
                 listItem: 'table:nth-of-type(1) > tbody > tr:nth-child(n+3)',
                 data: {
-                    rows: { listItem: 'td' },
+                    rows: { listItem: 'td' }
                 },
-                convert: e => e.rows.map((row: string | {}) => (
-                    typeof (row) == 'object' ? '' : row
-                )),
-            },
-        }
-    )).data as {
-        columns: string[],
-        sections: string[][],
+                convert: (e) =>
+                    e.rows.map((row: string | {}) => (typeof row == 'object' ? '' : row))
+            }
+        })
+    ).data as {
+        columns: string[];
+        sections: string[][];
     };
     console.log(`request done for ${url}`);
-    const sectionData = alignColumns(
-        res2.columns,
-        res2.sections,
-    ).filter(s => s['Type']) as RawBanwebEntry[];
+    const sectionData = alignColumns(res2.columns, res2.sections).filter(
+        (s) => s['Type']
+    ) as RawBanwebEntry[];
 
     const sections: ClassSection[] = [];
     for (const row of sectionData) {
@@ -159,7 +145,7 @@ async function getClassSections(
                 day: day_number,
                 start_time: parseInt(row.Time.split('-')[0]),
                 end_time: parseInt(row.Time.split('-')[1]),
-                location: row.Location,
+                location: row.Location
             });
         }
 
@@ -187,7 +173,7 @@ async function getClassSections(
                 seats: parseInt(row.Seats),
                 limit: parseInt(row.Limit),
                 enrolled: parseInt(row.Enroll),
-                meetings,
+                meetings
             });
         } else {
             // Physics recitations, and a few odd petroleum
@@ -223,10 +209,8 @@ async function main() {
     // term at once.
     const sectionData: ClassSection[] = [];
     for (const term of res.terms) {
-        const newSubjects = res.subjects.map(subj =>
-            getClassSections(term.term, subj.value)
-        );
-        
+        const newSubjects = res.subjects.map((subj) => getClassSections(term.term, subj.value));
+
         sectionData.push(...(await Promise.all(newSubjects)).flat());
     }
 
