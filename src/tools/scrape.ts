@@ -98,10 +98,8 @@ function term_name(term: string): [number, string] {
  */
 function parse_course_fees(fees: string): number {
     // Course fees normally look like either "N/A" or "$30".
-    if (fees.startsWith('$'))
-        return parseInt(fees.substring(1));
-    else
-        return 0;
+    if (fees.startsWith('$')) return parseInt(fees.substring(1));
+    else return 0;
 }
 
 async function getClassSections(term: string, subject: string): Promise<ClassSection[]> {
@@ -185,7 +183,7 @@ async function getClassSections(term: string, subject: string): Promise<ClassSec
                 limit: parseInt(row.Limit),
                 enrolled: parseInt(row.Enroll),
                 course_fees: parse_course_fees(row['Course Fees']),
-                meetings,
+                meetings
             });
         } else {
             // Physics recitations, and a few odd petroleum
