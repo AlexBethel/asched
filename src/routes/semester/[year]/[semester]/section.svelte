@@ -1,43 +1,50 @@
 <!-- Component to render a single section. -->
 <script lang="ts">
-    import type { ClassSection } from '$lib/data_types.ts';
-    import Meeting from './meeting.svelte';
+ import type { ClassSection } from '$lib/data_types.ts';
+ import Meeting from './meeting.svelte';
 
-    export let course: string;
-    export let classtimes: ClassSection[];
+ export let course: string;
+ export let classtimes: ClassSection[];
 
-    const classtime = classtimes[0];
+ const classtime = classtimes[0];
 
-    import { selected } from './stores';
-    let checked: boolean;
+ import { selected } from './stores';
+ let checked: boolean;
 
-    function update_check() {
-        const checking = !checked;
-        if (checking) {
-            selected.update((s) => {
-                s.push(classtime);
-                return s;
-            });
-        } else {
-            selected.update((s) => s.filter((el) => el !== classtime));
-        }
-    }
+ function update_check() {
+     const checking = !checked;
+     if (checking) {
+         selected.update((s) => {
+             s.push(classtime);
+             return s;
+         });
+     } else {
+         selected.update((s) => s.filter((el) => el !== classtime));
+     }
+ }
 
-    import translationFile from './translation.json';
-    const translation: {
-        classes: {
-            substitutions: { [k: string]: string };
-            blacklist: string[];
-        };
-        instructors: { [name: string]: string };
-    } = translationFile;
-    const instructor = translation.instructors[classtime.instructor] || classtime.instructor;
+ import translationFile from './translation.json';
+ const translation: {
+     classes: {
+         substitutions: { [k: string]: string };
+         blacklist: string[];
+     };
+     instructors: { [name: string]: string };
+ } = translationFile;
+ const instructor = translation.instructors[classtime.instructor] || classtime.instructor;
 </script>
 
 <div class="flow">
     <input type="checkbox" role="switch" bind:checked on:click={update_check} />
     <div>
-        <strong>{course}-{classtime.section_number}</strong>
+        <strong>
+            {course}-{classtime.section_number}
+        </strong>
+        {#if classtime.course_fees != 0}
+            <span class="money">
+                (${classtime.course_fees})
+            </span>
+        {/if}
         <br />
         <strong>Instructor:</strong>
         <a href="/instructor/{instructor}">{instructor}</a>
@@ -58,24 +65,27 @@
 </div>
 
 <style>
-    /* bit of a hack, but I'm using a flexbox to position the switch
+ /* bit of a hack, but I'm using a flexbox to position the switch
     right next to the paragraph. The switch needs manual adjustment to
     make it line up. */
-    div.flow {
-        display: flex;
-    }
-    input {
-        translate: 0px 7px;
-        margin-left: 10px;
-        margin-right: 20px;
-    }
-    .warning {
-        color: red;
-        font-weight: bold;
-    }
-    ul {
-        /* push the ul a little to the right, just to make it easier to
+ div.flow {
+     display: flex;
+ }
+ input {
+     translate: 0px 7px;
+     margin-left: 10px;
+     margin-right: 20px;
+ }
+ .warning {
+     color: red;
+     font-weight: bold;
+ }
+ .money {
+     color: var(--secondary);
+ }
+ ul {
+     /* push the ul a little to the right, just to make it easier to
         scan your eyes through the list of classes. */
-        margin-left: 10px;
-    }
+     margin-left: 10px;
+ }
 </style>
