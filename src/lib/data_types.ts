@@ -14,6 +14,7 @@ type ClassSection = {
     seats: number;
     limit: number;
     enrolled: number;
+    course_fees: number;
     meetings: Meeting[];
 };
 

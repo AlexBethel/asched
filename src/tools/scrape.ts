@@ -93,6 +93,17 @@ function term_name(term: string): [number, string] {
     return [year, day];
 }
 
+/**
+ * Converts a course fee into a number of dollars.
+ */
+function parse_course_fees(fees: string): number {
+    // Course fees normally look like either "N/A" or "$30".
+    if (fees.startsWith('$'))
+        return parseInt(fees.substring(1));
+    else
+        return 0;
+}
+
 async function getClassSections(term: string, subject: string): Promise<ClassSection[]> {
     const url = `http://banweb7.nmt.edu/pls/PROD/hwzkcrof.P_UncgSrchCrsOff?p_term=${term}&p_subj=${subject.replaceAll(
         ' ',
@@ -173,7 +184,8 @@ async function getClassSections(term: string, subject: string): Promise<ClassSec
                 seats: parseInt(row.Seats),
                 limit: parseInt(row.Limit),
                 enrolled: parseInt(row.Enroll),
-                meetings
+                course_fees: parse_course_fees(row['Course Fees']),
+                meetings,
             });
         } else {
             // Physics recitations, and a few odd petroleum
