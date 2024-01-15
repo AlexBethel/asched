@@ -1,8 +1,8 @@
 <script lang="ts">
- let semester_selection: string;
- function goto_semester() {
-     window.location.href = semester_selection;
- }
+    let semester_selection: string;
+    function goto_semester() {
+        window.location.href = semester_selection;
+    }
 </script>
 
 <main class="container">
@@ -38,30 +38,30 @@
 </footer>
 
 <style>
- main {
-     padding-top: 20vh;
-     min-height: calc(100vh - 6rem);
- }
+    main {
+        padding-top: 20vh;
+        min-height: calc(100vh - 6rem);
+    }
 
- article {
-     padding: 0px;
-     gap: 0px;
- }
+    article {
+        padding: 0px;
+        gap: 0px;
+    }
 
- .image {
-     display: block;
-     background-image: url('/background.jpg');
-     background-position: center;
-     background-size: cover;
- }
+    .image {
+        display: block;
+        background-image: url('/background.jpg');
+        background-position: center;
+        background-size: cover;
+    }
 
- form {
-     padding: 2rem;
-     display: flex;
-     flex-direction: column;
-     margin: 0px;
- }
- hgroup {
-     flex-grow: 1;
- }
+    form {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        margin: 0px;
+    }
+    hgroup {
+        flex-grow: 1;
+    }
 </style>

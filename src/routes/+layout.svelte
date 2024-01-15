@@ -1,13 +1,13 @@
 <script lang="ts">
- // Global CSS.
- import './pico.min.css';
+    // Global CSS.
+    import './pico.min.css';
 
- import { theme } from '$lib/storage/theme';
+    import { theme } from '$lib/storage/theme';
 
- $: {
-     if (typeof document !== 'undefined')
-         document.documentElement.setAttribute('data-theme', $theme);
- }
+    $: {
+        if (typeof document !== 'undefined')
+            document.documentElement.setAttribute('data-theme', $theme);
+    }
 </script>
 
 <header class="container-fluid">
@@ -49,11 +49,11 @@
 <slot />
 
 <style>
- header {
-     position: sticky;
-     top: 0;
-     background-color: var(--background-color);
-     border-bottom: 1px solid var(--muted-border-color);
-     z-index: 1; /* needed to avoid issues with arrows */
- }
+    header {
+        position: sticky;
+        top: 0;
+        background-color: var(--background-color);
+        border-bottom: 1px solid var(--muted-border-color);
+        z-index: 1; /* needed to avoid issues with arrows */
+    }
 </style>
