@@ -19,7 +19,7 @@ export const locations: { [banweb: string]: string } = {
     TBA: 'TBA',
     'TBA TBA': 'TBA', // Banweb sometimes lists TBA twice lol
     WEB: 'Online',
-    'WEB-V': 'Online',
+    '-V': '', // this is for "WEB-V"
     WEIR: 'Weir',
     WORKC: 'Workman',
 
