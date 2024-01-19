@@ -45,7 +45,7 @@
         <br />
         <strong>Seats:</strong>
         {classtime.seats}/{classtime.limit}
-        {#if classtime.seats == 0}
+        {#if classtime.seats <= 0}
             <span class="warning">(Full)</span>
         {/if}
         <ul>
