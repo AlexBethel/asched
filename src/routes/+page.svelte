@@ -1,5 +1,8 @@
 <script lang="ts">
     import { selections } from '$lib/storage/selections';
+    import type { PageData } from './$types';
+
+    export let data: PageData;
 
     let semester_selection: string;
     function goto_semester() {
@@ -11,10 +14,17 @@
     const options: {
         name: string;
         url: string;
-    }[] = [
-        { name: 'Spring 2024', url: '/sched/2024/spr' },
-        { name: 'Fall 2023', url: '/sched/2023/fal' }
-    ];
+    }[] = data.semesters.map(({ year, semester }) => {
+        const semester_name = {
+            Spr: 'Spring',
+            Sum: 'Summer',
+            Fal: 'Fall'
+        }[semester];
+        return {
+            name: `${semester_name} ${year}`,
+            url: `/sched/${year}/${semester}`
+        };
+    });
 </script>
 
 <article class="container">
