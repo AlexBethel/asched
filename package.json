@@ -32,7 +32,9 @@
     },
     "type": "module",
     "dependencies": {
+        "@fortawesome/free-regular-svg-icons": "^6.5.1",
         "fflate": "^0.8.1",
-        "scrape-it": "^6.1.0"
+        "scrape-it": "^6.1.0",
+        "svelte-fa": "^4.0.1"
     }
 }
