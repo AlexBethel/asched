@@ -10,7 +10,7 @@
 
     import { selections } from '$lib/storage/selections';
 
-    let included = $selections.find((s) => s.crn == classtime.crn) !== undefined;
+    let included = $selections.findIndex((s) => s.crn === classtime.crn) !== -1;
     let checked = included;
     $: {
         if (checked && !included) {
@@ -19,7 +19,7 @@
                 return s;
             });
         } else if (!checked && included) {
-            selections.update((s) => s.filter((el) => el !== classtime));
+            selections.update((s) => s.filter((el) => el.crn !== classtime.crn));
         }
         included = checked;
     }
