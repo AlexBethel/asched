@@ -7,8 +7,7 @@
     import { fade } from 'svelte/transition';
     import { selections } from '$lib/storage/selections';
 
-    import subject_names_ from './subjects.json';
-    const subject_names = subject_names_ as { [n: string]: string };
+    import { translations } from '$lib/translation/subject_names';
 
     export let subject: string;
     export let classtimes: ClassSection[];
@@ -21,7 +20,7 @@
 {#if classtimes.length != 0}
     <details bind:open>
         <summary>
-            {subject_names[subject]}
+            {translations[subject]}
             ({subject})
             {#if selected}
                 <span class="selection" transition:fade={{ duration: 100 }}> &bullet; </span>
