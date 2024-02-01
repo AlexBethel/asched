@@ -4,6 +4,9 @@
     import { categorize } from '$lib/categories';
     import Course from './course.svelte';
 
+    import { fade } from 'svelte/transition';
+    import { selections } from '$lib/storage/selections';
+
     import subject_names_ from './subjects.json';
     const subject_names = subject_names_ as { [n: string]: string };
 
@@ -12,6 +15,7 @@
     let open = false;
 
     $: by_number = categorize(classtimes, (c) => c.course_number);
+    $: selected = classtimes.find((ct) => $selections.find((sel) => sel.crn == ct.crn));
 </script>
 
 {#if classtimes.length != 0}
@@ -19,6 +23,9 @@
         <summary>
             {subject_names[subject]}
             ({subject})
+            {#if selected}
+                <span class="selection" transition:fade={{ duration: 100 }}> &bullet; </span>
+            {/if}
         </summary>
         <!-- Even though the `details` hides the body for us, we also
              explicitly avoid rendering the inside of it because the
@@ -37,3 +44,9 @@
         {/if}
     </details>
 {/if}
+
+<style>
+    .selection {
+        color: var(--primary);
+    }
+</style>
