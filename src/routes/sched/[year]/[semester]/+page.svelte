@@ -56,8 +56,8 @@
 
 <footer class="container">
     Information source:
-    <a href="http://banweb7.nmt.edu/pls/PROD/hwzkcrof.p_uncgslctcrsoff">
-        http://banweb7.nmt.edu/pls/PROD/hwzkcrof.p_uncgslctcrsoff
+    <a href="https://banweb7.nmt.edu/pls/PROD/hwzkcrof.p_uncgslctcrsoff">
+        https://banweb7.nmt.edu/pls/PROD/hwzkcrof.p_uncgslctcrsoff
     </a>
 </footer>
 
