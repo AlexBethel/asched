@@ -32,6 +32,13 @@
 
     <p>Welcome to the Teaweb NMT Scheduler, a successor to Beanweb.</p>
 
+    <p>
+        <strong>
+            This website is in beta! Crucial features are missing and/or broken, and feedback is
+            welcome!
+        </strong>
+    </p>
+
     <form on:submit={goto_semester}>
         <select required bind:value={semester_selection}>
             <option value="" disabled selected>Choose a semester...</option>

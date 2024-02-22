@@ -3,13 +3,6 @@
 
     import location_trans from '$lib/translation/locations';
 
-    function translate_location(s: string): string {
-        for (const entry in location_trans) {
-            s = s.replaceAll(entry, location_trans[entry]);
-        }
-        return s;
-    }
-
     /**
      * Converts a time into a decimal number of hours; e.g.,
      * time_to_hours(830) = 8.5, since 8:30 is 8.5 hours past midnight.
@@ -36,7 +29,7 @@
             start: meeting.start_time,
             length: time_diff_minutes(meeting.end_time, meeting.start_time),
             name: `${s.subject} ${s.course_number}-${s.section_number}`,
-            location: translate_location(meeting.location)
+            location: location_trans.translate(meeting.location)
         }))
     );
 

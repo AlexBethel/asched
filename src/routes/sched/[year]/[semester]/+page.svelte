@@ -50,6 +50,13 @@
     {/await}
 </main>
 
+<footer class="container">
+    Information source:
+    <a href="http://banweb7.nmt.edu/pls/PROD/hwzkcrof.p_uncgslctcrsoff">
+        http://banweb7.nmt.edu/pls/PROD/hwzkcrof.p_uncgslctcrsoff
+    </a>
+</footer>
+
 <style>
     h2 {
         margin-top: 50px;
@@ -66,8 +73,10 @@
         text-align: center;
     }
 
-    main {
+    footer {
+        margin-top: 50px;
+
         /* Extra scroll space. */
-        margin-bottom: 200px;
+        margin-bottom: 100px;
     }
 </style>

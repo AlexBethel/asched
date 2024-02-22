@@ -19,9 +19,14 @@
     }
 
     $: canSave = $selections.length != 0;
+    let saveDialogOpen = false;
+
+    function save() {
+        saveDialogOpen = true;
+    }
 </script>
 
-<header class="container-fluid">
+<header class="container-fluid top-header">
     <nav>
         <ul>
             <li>
@@ -37,7 +42,7 @@
         <ul>
             {#if canSave}
                 <li transition:fade={{ duration: 100 }}>
-                    <a href="/sched/2024/spr/save" role="button" class="outline">
+                    <a href="#" role="button" class="outline" on:click={save}>
                         <Fa icon={faFloppyDisk} />
                         Save
                     </a>
@@ -52,10 +57,30 @@
         </ul>
     </nav>
 </header>
+
+<dialog open={saveDialogOpen}>
+    <article>
+        <header>
+            <a href="#" aria-label="Close" class="close" on:click={() => (saveDialogOpen = false)}>
+            </a>
+            Save schedule
+        </header>
+        Your schedule has been saved to the server. You can access it by opening your browser to the
+        Teaweb website, or by accessing this URL:
+        <blockquote style="font-family: monospace">
+            <a href="https://teaweb.us/schedule/7yi3XWr"> https://teaweb.us/schedule/7yi3XWr </a>
+        </blockquote>
+        Don't lose this link! You will need it to view or modify this schedule in the future!
+        <footer>
+            <a href="#" role="button" on:click={() => (saveDialogOpen = false)}> Close </a>
+        </footer>
+    </article>
+</dialog>
+
 <slot />
 
 <style>
-    header {
+    header.top-header {
         position: sticky;
         top: 0;
         background-color: var(--background-color);
