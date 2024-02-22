@@ -37,6 +37,10 @@
     }
 </script>
 
+<svelte:head>
+    <title>Teaweb &mdash; Spring 2024</title>
+</svelte:head>
+
 <main class="container">
     <h2>Spring 2024</h2>
     <input type="search" placeholder="Filter classes..." bind:value={search_term} />

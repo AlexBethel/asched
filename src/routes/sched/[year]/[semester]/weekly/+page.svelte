@@ -57,6 +57,10 @@
     }
 </script>
 
+<svelte:head>
+    <title>Teaweb &mdash; Weekly Calendar</title>
+</svelte:head>
+
 <main class="container" style="--hour-spacing: {hour_spacing}px">
     <h1>My Classes</h1>
     <div class="days">

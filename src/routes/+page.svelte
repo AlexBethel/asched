@@ -27,6 +27,10 @@
     });
 </script>
 
+<svelte:head>
+    <title>Teaweb</title>
+</svelte:head>
+
 <article class="container">
     <h1>🫖 Teaweb</h1>
 
