@@ -65,12 +65,13 @@
             </a>
             Save schedule
         </header>
-        Your schedule has been saved to the server. You can access it by opening your browser to the
-        Teaweb website, or by accessing this URL:
-        <blockquote style="font-family: monospace">
-            <a href="https://teaweb.us/schedule/7yi3XWr"> https://teaweb.us/schedule/7yi3XWr </a>
-        </blockquote>
-        Don't lose this link! You will need it to view or modify this schedule in the future!
+        <!-- Your schedule has been saved to the server. You can access it by opening your browser to the
+             Teaweb website, or by accessing this URL:
+             <blockquote style="font-family: monospace">
+             <a href="https://teaweb.us/schedule/7yi3XWr"> https://teaweb.us/schedule/7yi3XWr </a>
+             </blockquote>
+             Don't lose this link! You will need it to view or modify this schedule in the future! -->
+        Schedule saving is unimplemented currently!
         <footer>
             <a href="#" role="button" on:click={() => (saveDialogOpen = false)}> Close </a>
         </footer>
