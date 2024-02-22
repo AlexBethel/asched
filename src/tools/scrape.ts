@@ -17,7 +17,7 @@ type TermsAndSubjects = {
 };
 async function termsAndSubjects(): Promise<TermsAndSubjects> {
     return (
-        await scrapeIt('http://banweb7.nmt.edu/pls/PROD/hwzkcrof.p_uncgslctcrsoff', {
+        await scrapeIt('https://banweb7.nmt.edu/pls/PROD/hwzkcrof.p_uncgslctcrsoff', {
             terms: {
                 listItem: 'select[name="p_term"] > option',
                 data: {
@@ -103,7 +103,7 @@ function parse_course_fees(fees: string): number {
 }
 
 async function getClassSections(term: string, subject: string): Promise<ClassSection[]> {
-    const url = `http://banweb7.nmt.edu/pls/PROD/hwzkcrof.P_UncgSrchCrsOff?p_term=${term}&p_subj=${subject.replaceAll(
+    const url = `https://banweb7.nmt.edu/pls/PROD/hwzkcrof.P_UncgSrchCrsOff?p_term=${term}&p_subj=${subject.replaceAll(
         ' ',
         '%20'
     )}`;
