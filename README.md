@@ -9,8 +9,9 @@ Goals:
 
 -   More modern-looking, clean web design, with dark & light theme and
     minimalism.
--   Don't make the mistake everyone seems to make of trying to stick
-    classes in a table; vertical space exists for a reason.
+-   Don't make the mistake of trying to stick classes in a table, with
+    a bazillion columns for the attributes of classes; vertical space
+    exists for a reason.
 -   Mobile layout support (eventually there might someday be an Ionic
     version of this for phones).
 -   Statically type everything.
@@ -25,15 +26,12 @@ Goals:
     Engineering". Instead of saying "No Given Name Ramyaa" use her
     actual name, "Ramyaa".
 
-Currently we're using a custom version of Beanweb's scraper to prepare
-the `classtimes.json` file; I'll probably rewrite it in Typescript
-soon.
-
 ## Running
 
 This is a SvelteKit project. After cloning use:
 
 ```bash
 npm i  # install dependencies, first run only
+npm run scrape # downloads schedules from Banweb
 npm run dev -- --open
 ```
