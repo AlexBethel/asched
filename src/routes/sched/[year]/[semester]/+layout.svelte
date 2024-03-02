@@ -42,6 +42,7 @@
         <ul>
             {#if canSave}
                 <li transition:fade={{ duration: 100 }}>
+                    <!-- svelte-ignore a11y-invalid-attribute -->
                     <a href="#" role="button" class="outline" on:click={save}>
                         <Fa icon={faFloppyDisk} />
                         Save
@@ -61,6 +62,7 @@
 <dialog open={saveDialogOpen}>
     <article>
         <header>
+            <!-- svelte-ignore a11y-invalid-attribute -->
             <a href="#" aria-label="Close" class="close" on:click={() => (saveDialogOpen = false)}>
             </a>
             Save schedule
@@ -73,6 +75,7 @@
              Don't lose this link! You will need it to view or modify this schedule in the future! -->
         Schedule saving is unimplemented currently!
         <footer>
+            <!-- svelte-ignore a11y-invalid-attribute -->
             <a href="#" role="button" on:click={() => (saveDialogOpen = false)}> Close </a>
         </footer>
     </article>
