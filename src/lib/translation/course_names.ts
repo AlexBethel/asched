@@ -15,7 +15,7 @@ export const translations = new Translator([
     [/Apprectn/, 'Appreciation'],
     [/Atmosph Physic/, 'Atmospheric Physics'],
     [/Beg\./, 'Beginning'],
-    [/Bio/, 'Biology'],
+    [/Bio$/, 'Biology'],
     [/Biochem /, 'Biochemistry '],
     [/Biomed /, 'Biomedical '],
     [/Biomolec /, 'Biomolecular '],
