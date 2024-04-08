@@ -83,14 +83,19 @@ type RawBanwebEntry = {
  * "Fal").
  */
 function term_name(term: string): [number, string] {
-    const year = parseInt(term.substring(0, 4));
-    const day = {
+    let year = parseInt(term.substring(0, 4));
+    const sem = {
         // don't ask about the order.
         '10': 'Sum',
         '20': 'Fal',
         '30': 'Spr'
     }[term.substring(4, 6)] as string;
-    return [year, day];
+
+    // Who the hell knows. They're off by one for some reason.
+    if (sem != "Spr")
+        year--;
+
+    return [year, sem];
 }
 
 /**
