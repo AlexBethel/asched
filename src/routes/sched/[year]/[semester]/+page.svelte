@@ -38,11 +38,11 @@
 </script>
 
 <svelte:head>
-    <title>Teaweb &mdash; Spring 2024</title>
+    <title>Teaweb &mdash; {data.semester} {data.year}</title>
 </svelte:head>
 
 <main class="container">
-    <h2>Spring 2024</h2>
+    <h2>{data.semester} {data.year}</h2>
     <input type="search" placeholder="Filter classes..." bind:value={search_term} />
     {#await load_classes()}
         <h3>Loading classes...</h3>
