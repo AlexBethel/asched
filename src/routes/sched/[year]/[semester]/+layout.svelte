@@ -49,11 +49,11 @@
                     </a>
                 </li>
                 <li transition:fade={{ duration: 100 }}>
-                    <a href="/sched/2024/spr/weekly"> View schedule </a>
+                    <a href="/sched/2024/Fal/weekly"> View schedule </a>
                 </li>
             {/if}
             <li>
-                <a href="/sched/2024/spr">Course catalog</a>
+                <a href="/sched/2024/Fal">Course catalog</a>
             </li>
         </ul>
     </nav>
