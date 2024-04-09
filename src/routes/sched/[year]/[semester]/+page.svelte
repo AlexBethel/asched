@@ -35,14 +35,20 @@
             items: c.items.filter((cx) => cx.title.toLowerCase().includes(term.toLowerCase()))
         }));
     }
+
+    let pretty_semester = {
+        Sum: 'Summer',
+        Fal: 'Fall',
+        Spr: 'Spring'
+    }[data.semester];
 </script>
 
 <svelte:head>
-    <title>Teaweb &mdash; {data.semester} {data.year}</title>
+    <title>Teaweb &mdash; {pretty_semester} {data.year}</title>
 </svelte:head>
 
 <main class="container">
-    <h2>{data.semester} {data.year}</h2>
+    <h2>{pretty_semester} {data.year}</h2>
     <input type="search" placeholder="Filter classes..." bind:value={search_term} />
     {#await load_classes()}
         <h3>Loading classes...</h3>

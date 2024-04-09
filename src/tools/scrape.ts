@@ -92,8 +92,7 @@ function term_name(term: string): [number, string] {
     }[term.substring(4, 6)] as string;
 
     // Who the hell knows. They're off by one for some reason.
-    if (sem != "Spr")
-        year--;
+    if (sem != 'Spr') year--;
 
     return [year, sem];
 }
