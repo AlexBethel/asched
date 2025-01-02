@@ -1,9 +1,11 @@
 # Teaweb
 
+No longer maintained as I no longer attend NMT
+
 ![Screenshot of a Teaweb schedule](./static/screenshot.png)
 
-Work-in-progress replacement for Benjamin Bean's Beanweb, a scheduling
-program for NMT students.
+Work-in-progress replacement for Beanweb, a scheduling program for NMT
+students.
 
 Goals:
 
